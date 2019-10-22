@@ -1,0 +1,67 @@
+#%RAML 1.0
+---
+title: SAPCustomers API
+baseUri: http://api.nnit.com/{version}
+version: v1
+
+types: 
+	SAPCustomers: !include SAPCustomersDataType.raml
+
+/SAPCustomers:
+	description: Customers from SAP
+	get:
+		description: Get list of Customers
+		queryParameters:
+		responses:
+			200:
+				body:
+					application/json:
+						type: SAPCustomersDataType[]
+						example: !include SAPCustomersExample.raml
+			400:
+			401:
+			404:
+			500:
+	post:
+		description: Create customer in SAP
+		responses:
+			201:
+				body:
+					application/json:
+						type: SAPCustomersDataType
+			400:
+			401:
+			404:
+			500:
+	/{customerID}
+		description: Single customer from SAP
+		get:
+			description: Read customer from SAP
+			responses:
+				200:
+					body:
+						application/json:
+							type: SAPCustomersDataType
+				400:
+				401:
+				404:
+				500:
+		delete:
+			description: Delete customer in SAP
+			responses:
+				200:
+				400:
+				401:
+				404:
+				500:
+		patch:
+			description: Update customer in SAP
+			responses:
+				200:
+				304:
+				400:
+				401:
+				404:
+				500: 
+		
+		
